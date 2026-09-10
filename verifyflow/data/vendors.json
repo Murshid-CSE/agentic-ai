@@ -1,0 +1,29 @@
+[
+  {
+    "id": "vendor_001",
+    "name": "Acme Supplies",
+    "known_domain": "acme.in",
+    "known_account": "BANK-ACME-001",
+    "trusted_contact": "+91-9000000001",
+    "historical_amount_avg": 42000,
+    "historical_amount_max": 75000
+  },
+  {
+    "id": "vendor_002",
+    "name": "Delta Components",
+    "known_domain": "delta-components.com",
+    "known_account": "BANK-DELTA-002",
+    "trusted_contact": "+91-9000000002",
+    "historical_amount_avg": 28000,
+    "historical_amount_max": 50000
+  },
+  {
+    "id": "vendor_003",
+    "name": "Northstar Office",
+    "known_domain": "northstaroffice.com",
+    "known_account": "BANK-NORTHSTAR-003",
+    "trusted_contact": "+91-9000000003",
+    "historical_amount_avg": 12000,
+    "historical_amount_max": 25000
+  }
+]

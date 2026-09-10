@@ -1,0 +1,15 @@
+{
+  "request_id": "VF-CASE-A",
+  "description": "Case A — Clean: everything matches, should APPROVE",
+  "vendor_name": "Acme Supplies",
+  "sender_email": "accounts@acme.in",
+  "sender_domain": "acme.in",
+  "invoice_number": "INV-1001",
+  "amount": 42000,
+  "requested_account": "BANK-ACME-001",
+  "urgency": "normal",
+  "verification_available": true,
+  "verification_verified": true,
+  "expected_action": "APPROVE",
+  "expected_adaptations": 0
+}

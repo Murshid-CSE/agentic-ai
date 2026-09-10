@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+.venv/
+venv/
+**/__pycache__/
+**/.venv/
+**/venv/
+
+# Node / Frontend
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Testing
+.pytest_cache/
+**/.pytest_cache/
+
+# Databases & local state
+*.db
+**/*.db
+*.sqlite3
+**/*.sqlite3
+*.log
+**/*.log
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets & Environment
+.env
+.env.*

@@ -1,0 +1,15 @@
+{
+  "request_id": "VF-CASE-C",
+  "description": "Case C — Ambiguous: known vendor, domain changed, account changed, verification unavailable",
+  "vendor_name": "Delta Components",
+  "sender_email": "finance@delta-corp.com",
+  "sender_domain": "delta-corp.com",
+  "invoice_number": "INV-7721",
+  "amount": 45000,
+  "requested_account": "BANK-DELTA-NEW-099",
+  "urgency": "normal",
+  "verification_available": false,
+  "verification_verified": null,
+  "expected_action": "HUMAN_REVIEW",
+  "expected_adaptations": 1
+}

@@ -1,0 +1,15 @@
+{
+  "request_id": "VF-CASE-B",
+  "description": "Case B — Suspicious: unknown domain, changed account, unusual amount, urgent",
+  "vendor_name": "Acme Supplies",
+  "sender_email": "billing@acme-payments.co",
+  "sender_domain": "acme-payments.co",
+  "invoice_number": "INV-4938",
+  "amount": 125000,
+  "requested_account": "BANK-ACME-999",
+  "urgency": "urgent",
+  "verification_available": false,
+  "verification_verified": null,
+  "expected_action": "HUMAN_REVIEW",
+  "expected_adaptations": 1
+}
