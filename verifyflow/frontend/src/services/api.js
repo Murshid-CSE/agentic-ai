@@ -8,8 +8,10 @@ const API_BASE = "http://127.0.0.1:8000";
 export const FALLBACK_DEMO_CASES = [
   {
     request_id: "VF-CASE-A",
-    label: "Case A — Clean",
-    description: "Known vendor, matching domain and account. Normal amount.",
+    label: "Routine Safe Invoice",
+    badge: "Instant AI Approval",
+    scenarioType: "safe",
+    description: "Known vendor, matching domain and registered bank account. Zero anomalies.",
     expected_action: "APPROVE",
     expected_score: 0,
     expected_level: "LOW",
@@ -23,8 +25,10 @@ export const FALLBACK_DEMO_CASES = [
   },
   {
     request_id: "VF-CASE-B",
-    label: "Case B — Hero Suspicious",
-    description: "Lookalike domain, bank account changed, amount exceeds historical max, urgent.",
+    label: "The BEC Cyberattack",
+    badge: "High Risk Attack Blocked",
+    scenarioType: "attack",
+    description: "Lookalike domain (acme-payments.co) + unverified bank account swap ($125,000 wire).",
     expected_action: "HUMAN_REVIEW",
     expected_score: 100,
     expected_level: "CRITICAL",
@@ -38,8 +42,10 @@ export const FALLBACK_DEMO_CASES = [
   },
   {
     request_id: "VF-CASE-C",
-    label: "Case C — Ambiguous",
-    description: "Known vendor, new domain, new account. Verification channel unavailable.",
+    label: "Outage & Self-Healing AI",
+    badge: "Autonomous Adaptation",
+    scenarioType: "recovery",
+    description: "Bank change requested while primary verification API is down. Agent pivots to secondary phone check.",
     expected_action: "HUMAN_REVIEW",
     expected_score: 60,
     expected_level: "HIGH",

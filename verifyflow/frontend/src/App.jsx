@@ -370,7 +370,7 @@ export default function App() {
         />
       ) : (
         <>
-          {/* 2. Scenario Presets & History Bar */}
+          {/* 2. Scenario Showcase (Top) */}
           <CaseSelector
             presets={presets}
             recentCases={recentCases}
@@ -378,59 +378,65 @@ export default function App() {
             onSelectCase={(c) => executeInvestigation(c, true)}
           />
 
-          {/* 3. M6 Failure Injection & Adaptation Control Toolbar */}
-          <FailureInjectionBar
-            verificationAvailable={verificationAvailable}
-            onToggleVerification={() => {
-              const next = !verificationAvailable;
-              setVerificationAvailable(next);
-              executeInvestigation(activeCase, true, { verification_available: next });
-            }}
-            trustedContactState={trustedContactState}
-            onChangeTrustedContactState={(state) => {
-              setTrustedContactState(state);
-              executeInvestigation(activeCase, true, { trustedContactState: state });
-            }}
-            enableSecondary={enableSecondary}
-            onToggleSecondary={() => {
-              const next = !enableSecondary;
-              setEnableSecondary(next);
-              executeInvestigation(activeCase, true, { enable_secondary: next });
-            }}
-          />
-
-          {/* 4. Inbound Payment Request Metadata Banner */}
-          <PaymentContext
-            request={activeCase}
-            riskSignals={investigation?.risk_signals || []}
-          />
-
-          {/* 5. Two-Column Hero Command Center */}
+          {/* 3. Streamlined Two-Column Hero Command Center */}
           <div className="main-grid">
-            {/* Left: The Agent Investigation Trace */}
-            <AgentTrace
-              trace={investigation?.trace || []}
-              visibleCount={visibleStepCount}
-              isReplaying={isReplaying}
-              adaptations={investigation?.adaptations || 0}
-            />
+            {/* Left Column: The Invoice & Investigation Story */}
+            <div className="column-stack">
+              {/* Executive Digital Invoice Card */}
+              <PaymentContext
+                request={activeCase}
+                riskSignals={investigation?.risk_signals || []}
+              />
 
-            {/* Right: Risk Signals & Granular Evidence Ledger */}
-            <RiskPanel
-              riskScore={investigation?.risk_score || 0}
-              riskLevel={investigation?.risk_level || "LOW"}
-              riskSignals={investigation?.risk_signals || []}
-              evidenceItems={evidenceDetails.evidence_items || []}
-              toolCalls={evidenceDetails.tool_calls || investigation?.evidence || []}
-            />
+              {/* Agent Investigation Timeline (Story Mode & Technical OODA) */}
+              <AgentTrace
+                trace={investigation?.trace || []}
+                visibleCount={visibleStepCount}
+                isReplaying={isReplaying}
+                adaptations={investigation?.adaptations || 0}
+              />
+            </div>
+
+            {/* Right Column: The AI Verdict, Risk Gauge & Chaos Simulator */}
+            <div className="column-stack">
+              {/* Authoritative Policy Decision Report (Hero Position at Top Right!) */}
+              <DecisionReport
+                finalAction={investigation?.final_action || "HUMAN_REVIEW"}
+                reason={investigation?.reason}
+                riskSignals={investigation?.risk_signals || []}
+              />
+
+              {/* Deterministic Risk Meter & Security Findings */}
+              <RiskPanel
+                riskScore={investigation?.risk_score || 0}
+                riskLevel={investigation?.risk_level || "LOW"}
+                riskSignals={investigation?.risk_signals || []}
+                evidenceItems={evidenceDetails.evidence_items || []}
+                toolCalls={evidenceDetails.tool_calls || investigation?.evidence || []}
+              />
+
+              {/* Live Resilience & Outage Simulator */}
+              <FailureInjectionBar
+                verificationAvailable={verificationAvailable}
+                onToggleVerification={() => {
+                  const next = !verificationAvailable;
+                  setVerificationAvailable(next);
+                  executeInvestigation(activeCase, true, { verification_available: next });
+                }}
+                trustedContactState={trustedContactState}
+                onChangeTrustedContactState={(state) => {
+                  setTrustedContactState(state);
+                  executeInvestigation(activeCase, true, { trustedContactState: state });
+                }}
+                enableSecondary={enableSecondary}
+                onToggleSecondary={() => {
+                  const next = !enableSecondary;
+                  setEnableSecondary(next);
+                  executeInvestigation(activeCase, true, { enable_secondary: next });
+                }}
+              />
+            </div>
           </div>
-
-          {/* 6. Authoritative Policy Decision Report */}
-          <DecisionReport
-            finalAction={investigation?.final_action || "HUMAN_REVIEW"}
-            reason={investigation?.reason}
-            riskSignals={investigation?.risk_signals || []}
-          />
         </>
       )}
 
