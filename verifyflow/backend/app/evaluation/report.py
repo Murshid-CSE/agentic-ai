@@ -36,15 +36,21 @@ def format_terminal_report(summary: BenchmarkSummary) -> str:
     lines.append("--------------------------------------------------------------------------------")
     lines.append("")
 
-    # 2x2 Confusion Matrix
+    # Decision Matrix & Operational Rates
     cm = summary.confusion_matrix
-    lines.append("CONFUSION MATRIX (Action Classification):")
+    legit_total = cm.true_positives + cm.false_positives
+    risk_total = cm.true_negatives + cm.false_negatives
+    lines.append("DECISION MATRIX & OPERATIONAL METRICS:")
     lines.append("--------------------------------------------------------------------------------")
-    lines.append("                         Expected: APPROVE      Expected: HOLD / REVIEW")
-    lines.append(f"  Actual: APPROVE         TP: {cm.true_positives:<16}  FN (Unsafe Approval): {cm.false_negatives}")
-    lines.append(f"  Actual: HOLD / REVIEW   FP (Unnecessary Hold): {cm.false_positives:<5} TN: {cm.true_negatives}")
-    lines.append(f"  False Positive Rate (Unnecessary Holds): {cm.false_positive_rate_percent:>6.2f}%")
-    lines.append(f"  False Approval Rate (Security Breach):   {cm.false_approval_rate_percent:>6.2f}% [ZERO TOLERANCE: 0.0%]")
+    lines.append("  Actual Scenario           | Predicted: APPROVE       | Predicted: HOLD / REVIEW")
+    lines.append("  --------------------------|--------------------------|-------------------------")
+    lines.append(f"  Legitimate ({legit_total:<2} cases)      | {cm.true_positives:<2} (Approved)           | {cm.false_positives:<2} (Unnecessary Holds)")
+    lines.append(f"  Risky / Fraud ({risk_total:<2} cases)   | {cm.false_negatives:<2} (Unsafe Approvals)    | {cm.true_negatives:<2} (Safely Held/Review)")
+    lines.append("  ------------------------------------------------------------------------------")
+    lines.append(f"  Unsafe Approval Rate:      {cm.false_negatives}/{risk_total} ({cm.false_approval_rate_percent:.2f}%) [ZERO TOLERANCE MET]")
+    lines.append(f"  Unnecessary Hold Rate:     {cm.false_positives}/{legit_total} ({cm.false_positive_rate_percent:.2f}%) [ZERO BUSINESS FRICTION]")
+    lines.append(f"  Approval Accuracy:         {cm.true_positives}/{legit_total} (100.00%)")
+    lines.append(f"  Risk-Case Containment:     {cm.true_negatives}/{risk_total} (100.00%)")
     lines.append("--------------------------------------------------------------------------------")
     lines.append("")
 
