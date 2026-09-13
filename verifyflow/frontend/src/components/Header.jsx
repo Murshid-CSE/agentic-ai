@@ -8,6 +8,7 @@ import {
   Layers,
   Sparkles,
   Zap,
+  Video,
 } from "lucide-react";
 
 export default function Header({
@@ -20,6 +21,7 @@ export default function Header({
   onRunInvestigation,
   onReplayTrace,
   onOpenRawModal,
+  onOpenDemoVideoModal,
 }) {
   return (
     <header className="vf-card header-bar">
@@ -132,6 +134,16 @@ export default function Header({
             >
               <FileText size={14} />
               <span>Test Custom Invoice</span>
+            </button>
+
+            <button
+              className="btn btn-accent"
+              onClick={onOpenDemoVideoModal}
+              style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", color: "#ffffff", border: "none" }}
+              title="Watch or record the interactive 5-scene demo video presentation"
+            >
+              <Video size={14} />
+              <span>🎬 Demo Video Studio</span>
             </button>
           </>
         )}

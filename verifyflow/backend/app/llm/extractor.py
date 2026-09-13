@@ -81,8 +81,8 @@ def extract_payment_claim(
             raw_response=raw_response,
         )
 
-    except (json.JSONDecodeError, ValidationError) as err:
-        # Graceful fallback: If LLM output was malformed, try deterministic fallback
+    except Exception as err:
+        # Graceful fallback: If LLM output was malformed or provider errored, use deterministic fallback
         if not isinstance(llm, DeterministicFallbackProvider):
             fallback = DeterministicFallbackProvider()
             try:
@@ -98,7 +98,7 @@ def extract_payment_claim(
                     success=True,
                     claim=claim,
                     provider_used=f"{llm.name}_with_fallback",
-                    error=f"Primary model output invalid ({str(err)}); recovered with deterministic fallback",
+                    error=f"Primary model failed ({str(err)}); recovered with deterministic fallback",
                     raw_response=raw_response,
                 )
             except Exception:
@@ -109,15 +109,6 @@ def extract_payment_claim(
             claim=None,
             provider_used=llm.name,
             error=f"LLM extraction failed: {str(err)}",
-            raw_response=raw_response,
-        )
-
-    except Exception as err:
-        return ExtractionResult(
-            success=False,
-            claim=None,
-            provider_used=llm.name,
-            error=f"Provider error: {str(err)}",
             raw_response=raw_response,
         )
 

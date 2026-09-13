@@ -8,6 +8,7 @@ import DecisionReport from "./components/DecisionReport";
 import RawInputModal from "./components/RawInputModal";
 import FailureInjectionBar from "./components/FailureInjectionBar";
 import BenchmarkDashboard from "./components/BenchmarkDashboard";
+import DemoVideoModal from "./components/DemoVideoModal";
 import {
   checkHealth,
   fetchDemoCases,
@@ -42,6 +43,7 @@ export default function App() {
   const [visibleStepCount, setVisibleStepCount] = useState(999);
   const [isReplaying, setIsReplaying] = useState(false);
   const [isRawModalOpen, setIsRawModalOpen] = useState(false);
+  const [isDemoVideoModalOpen, setIsDemoVideoModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const replayTimerRef = useRef(null);
@@ -358,6 +360,7 @@ export default function App() {
         onRunInvestigation={() => executeInvestigation(activeCase, true)}
         onReplayTrace={handleReplayClick}
         onOpenRawModal={() => setIsRawModalOpen(true)}
+        onOpenDemoVideoModal={() => setIsDemoVideoModalOpen(true)}
       />
 
       {viewMode === "benchmark" ? (
@@ -445,6 +448,12 @@ export default function App() {
         isOpen={isRawModalOpen}
         onClose={() => setIsRawModalOpen(false)}
         onSubmitRaw={handleRawSubmit}
+      />
+
+      {/* Modal for Interactive Demo Video Studio & Video Recording */}
+      <DemoVideoModal
+        isOpen={isDemoVideoModalOpen}
+        onClose={() => setIsDemoVideoModalOpen(false)}
       />
     </div>
   );
