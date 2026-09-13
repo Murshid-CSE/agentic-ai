@@ -3,7 +3,7 @@
  * Provides fallback mock data if backend server is temporarily unreachable.
  */
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 export const FALLBACK_DEMO_CASES = [
   {
